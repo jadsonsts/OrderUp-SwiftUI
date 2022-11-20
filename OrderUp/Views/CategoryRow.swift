@@ -19,7 +19,6 @@ struct CategoryRow: View {
             Text(category.name)
                 .fontWeight(.bold)
         }
-        //.frame(width: 40, height: 40)
     }
 }
 
