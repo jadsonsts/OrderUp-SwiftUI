@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct CartItem {
+    var item: ShopItem
+    var quantity: Int
+}

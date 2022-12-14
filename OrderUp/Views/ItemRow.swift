@@ -8,41 +8,55 @@
 import SwiftUI
 
 struct ItemRow: View {
+    
+    @Binding var cartItems: Dictionary<Int, CartItem>
+    
     var inCart: Bool
     var shopItem: ShopItem
-    @State var numberOfItems: Int
+    
     var body: some View {
-        ZStack {
-            VStack (spacing: 0) {
-                Image("icons8-sweet_carrot")
-                    .resizable()
-                    .aspectRatio(1, contentMode: .fit)
-                    .frame(maxWidth: 70)
-                    .frame(width: 250, height: 50, alignment: .top)
-                    .offset(x:-120, y:+20)
-                    .background(Color.red)
-                
+        HStack {
+            Image(shopItem.image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: 75)
+            VStack(alignment: .leading) {
                 Text(shopItem.name)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.leading)
                 Text(shopItem.description)
-                
-                HStack {
-                    Text("$\(String(format: "%.2f", shopItem.price))")
-                        .padding()
-                    Stepper("", value: $numberOfItems,
-                            in: 0...30,
-                            step: 1)
-                }
+                    .font(.subheadline)
+                    .fontWeight(.thin)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(2)
+                Text("$\(String(format:"%.2f", shopItem.price))")
+                    .fontWeight(.semibold)
+                    .foregroundColor(.cyan)
+                    .multilineTextAlignment(.leading)
             }
-            .padding(5)
-            .background(Color.gray)
-            .frame(width: 320, height: 100)
-
+            Spacer()
+            if inCart(shopItem: shopItem) {
+                StepperView(cartItems: self.$cartItems, item: shopItem)
+            } else {
+                AddToCart()
+                    .onTapGesture {
+                        self.toggleCartItem(shopItem: self.shopItem)
+                    }
+            }
+        }
+    }
+    
+    private func inCart(shopItem: ShopItem) -> Bool {
+        return cartItems[shopItem.id] != nil
+    }
+    
+    private func toggleCartItem(shopItem: ShopItem) {
+        if cartItems[shopItem.id] == nil {
+            cartItems[shopItem.id] = CartItem(item: shopItem, quantity: 1)
+            
+        } else {
+            cartItems[shopItem.id] = nil
         }
     }
 }
 
-struct ItemRow_Previews: PreviewProvider {
-    static var previews: some View {
-        ItemRow(inCart: true, shopItem: ShopItem(id: 1, price: 20.00, name: "Potato", description: "A sack of potatoes", category: Categories(name: "Fruits and Vegetables", id: 5, imageName: "icons8-beetroot_1")), numberOfItems: 1)
-    }
-}

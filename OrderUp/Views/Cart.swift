@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct Cart: View {
-    var cartItems: Int
+    var cartQty: Int {
+        var quantity = 0
+        for item in cartItems.values {
+            quantity += item.quantity
+        }
+        return quantity
+    }
+    var cartItems: Dictionary<Int, CartItem>
     var body: some View {
         ZStack {
             Image("cart")
@@ -19,13 +26,13 @@ struct Cart: View {
                 Circle()
                     .fill(Color.red)
                     .frame(maxWidth: 30)
-                Text(String(cartItems))
+                Text("\(cartQty)")
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
 
             }
             .offset(x: 20, y: 10)
-            .opacity(cartItems > 0 ? 1.0 : 0)
+            .opacity(cartQty > 0 ? 1.0 : 0)
         }
     }
 }

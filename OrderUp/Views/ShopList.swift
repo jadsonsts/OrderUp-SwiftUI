@@ -14,14 +14,14 @@ struct ShopList: View {
     
     var body: some View {
         NavigationView {
-            VStack{
+            VStack(alignment: .leading)
                 Text("Categories")
                     .font(.headline)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.leading)
                     .offset(x: -130)
                 ScrollView(.horizontal) {
-                    HStack(spacing: 30) {
+                    HStack(spacing: 20) {
                         ForEach(categories) { category in
                             CategoryRow(category: category)
                                 .offset(y: -20)
@@ -32,10 +32,10 @@ struct ShopList: View {
                 List(availableItems) { item in
                     ItemRow(inCart: true, shopItem: item, numberOfItems: 1)
                 }
-                Cart(cartItems: cartItems.count)
+                //Cart(cartItems: cartItems.count)
             }
             .navigationTitle("The Shop List")
-            .navigationBarItems(trailing: Cart(cartItems: cartItems.count))
+           //.navigationBarItems(trailing: //Cart(cartItems: cartItems.count))
 
         }
 
@@ -52,12 +52,7 @@ struct ShopList_Previews: PreviewProvider {
             Categories(name: "Dairy", id: 4, imageName: "icons8-cherry_donut"),
             Categories(name: "Fruits and Vegetables", id: 5, imageName: "icons8-beetroot_1")],
                  availableItems: [
-                    ShopItem(id: 1, price: 10.00, name: "Potato Kg", description: "A sack of Potatoes", category: Categories(name: "Fruits and Vegetables", id: 5, imageName: "icons8-beetroot_1")),
-                    ShopItem(id: 1, price: 10.00, name: "Potato Kg", description: "A sack of Potatoes", category: Categories(name: "Fruits and Vegetables", id: 5, imageName: "icons8-beetroot_1")),
-                    ShopItem(id: 1, price: 10.00, name: "Potato Kg", description: "A sack of Potatoes", category: Categories(name: "Fruits and Vegetables", id: 5, imageName: "icons8-beetroot_1")),
-                    ShopItem(id: 1, price: 10.00, name: "Potato Kg", description: "A sack of Potatoes", category: Categories(name: "Fruits and Vegetables", id: 5, imageName: "icons8-beetroot_1")),
-                    ShopItem(id: 1, price: 10.00, name: "Potato Kg", description: "A sack of Potatoes", category: Categories(name: "Fruits and Vegetables", id: 5, imageName: "icons8-beetroot_1")),
-                    ShopItem(id: 1, price: 10.00, name: "Potato Kg", description: "A sack of Potatoes", category: Categories(name: "Fruits and Vegetables", id: 5, imageName: "icons8-beetroot_1"))
+                    ShopItem(id: 1, price: 10.00, name: "Potato Kg", description: "A sack of Potatoes", image: "icons8-tomato_and_garlic_1", category: Categories(name: "Fruits and Vegetables", id: 5, imageName: "icons8-beetroot_1")),
                  ])
     }
 }

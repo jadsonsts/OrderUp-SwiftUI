@@ -12,6 +12,7 @@ struct ShopItem: Identifiable {
     var price: Double
     var name: String
     var description: String
+    var image: String
     var category: Categories
 }
 

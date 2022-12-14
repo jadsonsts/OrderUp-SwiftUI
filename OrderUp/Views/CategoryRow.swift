@@ -14,7 +14,7 @@ struct CategoryRow: View {
         VStack {
             Image(category.imageName)
                 .resizable()
-                .aspectRatio(1, contentMode: .fit)
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 35, height: 35)
             Text(category.name)
                 .fontWeight(.bold)

@@ -9,7 +9,17 @@ import SwiftUI
 
 struct AddToCart: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Capsule()
+                .fill(Color.cyan)
+                .frame(width: 100, height: 25, alignment: .center)
+            Text("Add to cart")
+                .font(Font.system(size: 12))
+                .fontWeight(.bold)
+                .font(.body)
+                .foregroundColor(.white)
+        }
+        .shadow(radius: 5.0)
     }
 }
 
