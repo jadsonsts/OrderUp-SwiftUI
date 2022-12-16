@@ -11,7 +11,7 @@ struct ItemRow: View {
     
     @Binding var cartItems: Dictionary<Int, CartItem>
     
-    var inCart: Bool
+    //var inCart: Bool
     var shopItem: ShopItem
     
     var body: some View {

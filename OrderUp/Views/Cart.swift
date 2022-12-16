@@ -25,7 +25,7 @@ struct Cart: View {
             ZStack{
                 Circle()
                     .fill(Color.red)
-                    .frame(maxWidth: 30)
+                    .frame(maxWidth: 25)
                 Text("\(cartQty)")
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
