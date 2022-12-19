@@ -23,16 +23,10 @@ struct ShopList: View {
                     .fontWeight(.semibold)
                     .padding(.leading)
                 CategoryCollection(selectedCategory: $selectedCategory, categories: categories)
-                Spacer()
-                List(availableItems.filter({ shopItem in
-                    if selectedCategory.id == 0 {
-                        return true
-                    } else {
-                        return shopItem.categoryID == selectedCategory.id
-                    }
-                })) { item in
-                    ItemRow(cartItems: self.$cartItems, shopItem: item)
-                }
+                Text("Menu")
+                    .font(.headline)
+                    .padding(.leading)
+                ListItem(cartItems: $cartItems, selectedCategory: $selectedCategory, availableItems: availableItems)
                 
             }
             .navigationTitle("The Shop List")

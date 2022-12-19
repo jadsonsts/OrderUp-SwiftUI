@@ -18,8 +18,8 @@ struct CategoryCollection: View {
                 ForEach(categories) { category in
                     CategoryRow(selectedCategory: self.$selectedCategory, category: category)
                 }
-            } //.padding()
-        }//.frame(height: 100)
+            }
+        }
     }
 }
 
